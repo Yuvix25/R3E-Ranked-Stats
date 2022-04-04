@@ -1,14 +1,11 @@
 from threading import Thread
 import os
-import io
 import json
 import pytz
-from datetime import datetime
 from flask import Flask, render_template
 
 import pandas as pd
 from pandas_highcharts.core import serialize
-import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 cet = pytz.timezone('CET')
