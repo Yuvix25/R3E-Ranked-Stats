@@ -12,8 +12,8 @@ def get_servers():
 def save_data(player_count):
     if not os.path.isfile('data.json'):
         data = {}
-    
-    data = json.load(open('data.json'))
+    else:
+        data = json.load(open('data.json'))
     data[str(round(time.time()))] = player_count
     json.dump(data, open('data.json', 'w'))
 
