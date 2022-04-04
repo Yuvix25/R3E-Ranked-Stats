@@ -4,21 +4,11 @@ import io
 import json
 import pytz
 from datetime import datetime
-from flask import Response, Flask, render_template
+from flask import Flask, render_template
 
-import numpy as np
 import pandas as pd
 from pandas_highcharts.core import serialize
-# from pandas_highcharts.display import display_charts
 import matplotlib.pyplot as plt
-
-# import pandas as pd
-# from pandas_highcharts.display import display_charts
-
-# from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-# from matplotlib.figure import Figure
-# import matplotlib.pyplot as plt
-
 
 app = Flask(__name__)
 cet = pytz.timezone('CET')
