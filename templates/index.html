@@ -9,7 +9,15 @@
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>  
         <script type="text/javascript">
-            new Highcharts.Chart({{chart|safe}});
-        </script>   
+            var chart = new Highcharts.Chart({{chart|safe}});
+            console.log(chart);
+
+            for (let i = 1; i < chart.series.length; i++) {
+                // console.log(chart.series[1].data[i]);
+                chart.series[i].setVisible(false)
+                
+            }
+            // chart.series[1]
+        </script>
     </body>
 </html>
