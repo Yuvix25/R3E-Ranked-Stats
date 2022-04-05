@@ -32,4 +32,4 @@ while True:
     print(f'{player_count} players online')
     # save_data(player_count)
 
-    # time.sleep(5 * 60)
+    time.sleep(5 * 60)
