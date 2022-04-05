@@ -1,6 +1,5 @@
 from threading import Thread
 import json
-import pytz
 from flask import Flask, render_template
 
 import pandas as pd
@@ -9,7 +8,6 @@ from pandas_highcharts.core import serialize
 from utils import *
 
 app = Flask(__name__)
-cet = pytz.timezone('CET')
 
 def convert_timezone(t): # convert GMT to CET
     return int(t) + 3600 * 2
