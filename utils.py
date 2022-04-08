@@ -1,4 +1,5 @@
 import os
+import time
 import json
 import requests
 
@@ -148,7 +149,12 @@ def read_data():
     if not os.path.isfile('data.json'):
         data = {}
     else:
-        data = json.load(open('data.json'))
+        try:
+            data = json.load(open('data.json'))
+        except:
+            time.sleep(0.5)
+            data = json.load(open('data.json'))
+            
     return data
 
 def read_chart_data():
