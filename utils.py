@@ -2,6 +2,8 @@ import os
 import time
 import json
 import requests
+import numpy as np
+from scipy.signal import savgol_filter, find_peaks
 
 
 LEVELS = {
@@ -177,3 +179,39 @@ def read_chart_data():
         minimized_data[timestamp] = player_counts
 
     return minimized_data
+
+
+
+def smoothen(xs, line):
+    line = np.array(line)
+    # indices, _ = find_peaks(line, distance=2)
+    indices = list(range(len(line)))
+    # xs = xs[peaks]
+    # ys = ys[peaks]
+    # print(len(indices))
+
+    window_length = min(51, len(indices))
+    if window_length % 2 == 0:
+        window_length -= 1
+
+    new = savgol_filter(line[indices], window_length, min(7, window_length - 1))
+
+    # fill in gaps to get new's length to be the same as line
+    res = []
+    new_counter = 0
+    for i, x in enumerate(xs):
+        if i not in indices:
+            closest_lower = 0
+            closest_upper = 0
+            for j, ind in enumerate(indices):
+                if ind > i:
+                    closest_lower = line[indices[j-1] if j > 0 else 0]
+                    closest_upper = line[indices[j] if j < len(indices) - 1 else len(line) - 1]
+                    break
+            
+            res.append(closest_lower + (closest_upper - closest_lower) * (i - indices[j-1]) / (indices[j] - indices[j-1]))
+        else:
+            res.append(new[new_counter])
+            new_counter += 1
+    
+    return res
