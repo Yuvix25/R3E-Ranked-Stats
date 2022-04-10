@@ -29,8 +29,8 @@ def create_chart():
             chart['series'][i]['name'] = chart['series'][i]['name'].replace('-', ' ').replace('eu', 'Europe').replace('us', 'America').replace('oc', 'Oceania').replace('rook', 'Rookie').replace('am', 'Amateur').replace('pro', 'Pro').replace('total', 'Total')
             if chart['series'][i]['name'] == 'Smooth Total':
                 chart['series'][i]['showInLegend'] = False
-                chart['series'][i]['zIndex'] = -1
-                chart['series'][i]['color'] = '#ababab'
+                # chart['series'][i]['zIndex'] = -1
+                chart['series'][i]['color'] = '#878787'
         chart['xAxis']['title']['text'] = 'Time (CET)'
     return json.dumps(chart)
 
