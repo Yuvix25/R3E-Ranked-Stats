@@ -15,7 +15,7 @@ def convert_timezone(t): # convert GMT to CET
 def create_chart():
     data = read_chart_data()
 
-    smoothened = smoothen(map(convert_timezone, data.keys()), [x[0] for x in data.values()])
+    smoothened = smoothen([x[0] for x in data.values()])
     s = [[convert_timezone(x[0]), x[1][0], smoothened[i], *x[1][1:]] for i, x in enumerate(data.items())]
     cols = ['dt', 'total', 'Smooth-total', 'rook', 'am', 'pro', 'eu', 'us', 'oc', 'rook-eu', 'rook-us', 'rook-oc', 'am-eu', 'am-us', 'am-oc', 'pro-eu', 'pro-us', 'pro-oc']
     df = pd.DataFrame(s, columns=cols)

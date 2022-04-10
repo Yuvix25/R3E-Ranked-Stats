@@ -182,7 +182,7 @@ def read_chart_data():
 
 
 
-def smoothen(xs, line):
+def smoothen(line):
     line = np.array(line)
     # indices, _ = find_peaks(line, distance=2)
     indices = list(range(len(line)))
@@ -199,7 +199,7 @@ def smoothen(xs, line):
     # fill in gaps to get new's length to be the same as line
     res = []
     new_counter = 0
-    for i, x in enumerate(xs):
+    for i in range(len(line)):
         if i not in indices:
             closest_lower = 0
             closest_upper = 0
